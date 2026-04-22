@@ -60,7 +60,6 @@ const HeroSection = () => {
                 className="bg-red-600 hover:bg-red-700 text-white text-lg px-8 py-6 rounded-full transition-all duration-300 hover:scale-105"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                onClick={() => document.getElementById("plans")?.scrollIntoView({ behavior: "smooth" })}
               >
                 <Icon name="Play" size={20} className="mr-2" />
                 <span>Слушать бесплатно</span>
@@ -71,14 +70,6 @@ const HeroSection = () => {
                 >
                   →
                 </span>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white/20 text-white hover:bg-white/10 text-lg px-8 py-6 rounded-full transition-all duration-300"
-                onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                Узнать больше
               </Button>
             </div>
           </div>

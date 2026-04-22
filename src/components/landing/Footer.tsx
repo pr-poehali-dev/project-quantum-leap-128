@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div>
             <a href="/" className="text-2xl font-bold text-white flex items-center gap-2 mb-2">
-              <span className="text-red-500">♪</span> SoundWave
+              <span className="text-red-500">♪</span> K.J
             </a>
             <p className="text-zinc-500 text-sm">Музыка без границ</p>
           </div>
@@ -29,7 +29,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="mt-8 pt-6 border-t border-white/5 text-center text-zinc-600 text-sm">
-          &copy; {new Date().getFullYear()} SoundWave. Все права защищены.
+          &copy; {new Date().getFullYear()} K.J. Все права защищены.
         </div>
       </div>
     </footer>

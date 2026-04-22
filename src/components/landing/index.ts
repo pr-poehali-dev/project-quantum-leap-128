@@ -5,3 +5,5 @@ export { default as LicenseSection } from "./LicenseSection";
 export { default as AboutSection } from "./AboutSection";
 export { default as ContactSection } from "./ContactSection";
 export { default as Footer } from "./Footer";
+export { default as MiniPlayer } from "./MiniPlayer";
+export { default as AuthModal } from "./AuthModal";
