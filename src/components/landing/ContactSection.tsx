@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Loader2, Send, CheckCircle } from "lucide-react";
+import Icon from "@/components/ui/icon";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -40,12 +40,9 @@ const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Симуляция отправки
     await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log("Форма отправлена:", formData);
     setIsSubmitting(false);
     setIsSubmitted(true);
-    // Сброс формы через 3 секунды
     setTimeout(() => {
       setIsSubmitted(false);
       setFormData({ name: "", email: "", message: "" });
@@ -59,12 +56,16 @@ const ContactSection = () => {
         style={{ backgroundPosition: "0 0, 0 0" }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[300px] bg-purple-600/5 rounded-full blur-[80px] pointer-events-none" />
       <div
         className={`container mx-auto px-4 relative z-10 transition-all duration-700 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
         }`}
       >
-        <h2 className="text-5xl font-bold mb-10 text-center text-zinc-200">Связаться со мной</h2>
+        <h2 className="text-5xl font-bold mb-4 text-center text-zinc-200">Напишите нам</h2>
+        <p className="text-center text-zinc-400 mb-10 max-w-xl mx-auto">
+          Есть вопросы по платформе, предложения по сотрудничеству или хотите добавить свою музыку? Мы на связи!
+        </p>
         <div
           className={`max-w-md mx-auto bg-black/50 backdrop-blur-lg rounded-lg p-8 shadow-2xl border border-white/10 transition-all duration-500 delay-200 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
@@ -96,7 +97,7 @@ const ContactSection = () => {
             <div className="mb-4">
               <Textarea
                 name="message"
-                placeholder="Ваше сообщение"
+                placeholder="Ваше сообщение..."
                 value={formData.message}
                 onChange={handleChange}
                 required
@@ -105,23 +106,23 @@ const ContactSection = () => {
             </div>
             <Button
               type="submit"
-              className="w-full bg-white text-black hover:bg-zinc-200 transition-colors relative overflow-hidden group"
+              className="w-full bg-purple-600 hover:bg-purple-700 text-white transition-colors relative overflow-hidden group"
               disabled={isSubmitting || isSubmitted}
             >
               <span className="relative z-10 flex items-center justify-center">
                 {isSubmitting ? (
                   <>
-                    <Loader2 className="animate-spin mr-2" size={18} />
+                    <Icon name="Loader2" size={18} className="animate-spin mr-2" />
                     Отправка...
                   </>
                 ) : isSubmitted ? (
                   <>
-                    <CheckCircle className="mr-2" size={18} />
+                    <Icon name="CheckCircle" size={18} className="mr-2" />
                     Отправлено!
                   </>
                 ) : (
                   <>
-                    <Send className="mr-2" size={18} />
+                    <Icon name="Send" size={18} className="mr-2" />
                     Отправить сообщение
                   </>
                 )}

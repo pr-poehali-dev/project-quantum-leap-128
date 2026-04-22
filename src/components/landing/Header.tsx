@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import Icon from "@/components/ui/icon";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,8 +29,8 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <a href="/" className="text-3xl font-bold tracking-tighter text-white">
-          SoundForge
+        <a href="/" className="text-3xl font-bold tracking-tighter text-white flex items-center gap-2">
+          <span className="text-purple-400">♪</span> SoundWave
         </a>
         <div className="md:hidden">
           <Button
@@ -39,7 +39,7 @@ const Header = () => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="text-white hover:bg-white/10"
           >
-            {isMenuOpen ? <X /> : <Menu />}
+            {isMenuOpen ? <Icon name="X" /> : <Icon name="Menu" />}
           </Button>
         </div>
         <nav
@@ -50,10 +50,10 @@ const Header = () => {
           <ul className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 p-4 md:p-0">
             <li>
               <button
-                onClick={() => scrollToSection("licenses")}
+                onClick={() => scrollToSection("plans")}
                 className="text-white hover:text-purple-400 transition-colors"
               >
-                Лицензии
+                Тарифы
               </button>
             </li>
             <li>
@@ -61,7 +61,7 @@ const Header = () => {
                 onClick={() => scrollToSection("about")}
                 className="text-white hover:text-purple-400 transition-colors"
               >
-                Обо мне
+                О платформе
               </button>
             </li>
             <li>
@@ -76,12 +76,10 @@ const Header = () => {
         </nav>
         <Button
           variant="outline"
-          className="hidden md:block border-white/20 text-white hover:bg-white/10"
-          asChild
+          className="hidden md:block border-purple-400/50 text-purple-300 hover:bg-purple-400/10"
+          onClick={() => scrollToSection("plans")}
         >
-          <a href="#" target="_blank" rel="noopener noreferrer">
-            BeatStars
-          </a>
+          Начать слушать
         </Button>
       </div>
     </header>

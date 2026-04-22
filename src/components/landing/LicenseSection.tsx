@@ -1,71 +1,74 @@
 import { useState, useRef, useEffect } from "react";
-import { Check, X, Crown, Zap, Star, Globe } from "lucide-react";
+import { Check, Star, Zap, Crown, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
-interface LicenseOption {
+interface PlanOption {
   name: string;
   price: string;
+  period: string;
   icon: React.ReactNode;
   features: string[];
-  notIncluded?: string[];
-  bulkDeal?: string;
   popular?: boolean;
+  badge?: string;
 }
 
-const licenseOptions: LicenseOption[] = [
+const plans: PlanOption[] = [
   {
-    name: "Стандартная лицензия",
-    price: "299 руб",
+    name: "Бесплатный",
+    price: "0 ₽",
+    period: "навсегда",
     icon: <Star className="w-6 h-6" />,
     features: [
-      "Использование для записи музыки",
-      "Распространение до 5 000 копий",
-      "75 000 онлайн-прослушиваний",
-      "1 музыкальный клип",
-      "Коммерческие выступления",
-      "Радиотрансляция (2 станции)",
+      "Доступ к 10 000 треков",
+      "Качество до 128 kbps",
+      "Реклама между треками",
+      "Только онлайн-прослушивание",
+      "Мобильное приложение",
     ],
-    bulkDeal: "КУПИ 1 ТРЕК — ПОЛУЧИ 1 В ПОДАРОК!",
+    badge: "НАЧНИ СЕЙЧАС — БЕСПЛАТНО!",
   },
   {
-    name: "Продвинутая лицензия",
-    price: "499 руб",
+    name: "Стандарт",
+    price: "199 ₽",
+    period: "в месяц",
     icon: <Zap className="w-6 h-6" />,
     features: [
-      "Использование для записи музыки",
-      "Распространение до 10 000 копий",
-      "150 000 онлайн-прослушиваний",
-      "1 музыкальный клип",
-      "Коммерческие выступления",
-      "Радиотрансляция (без ограничений)",
+      "Доступ к 50 000 треков",
+      "Качество до 320 kbps",
+      "Без рекламы",
+      "Скачивание до 100 треков",
+      "Мобильное приложение",
+      "1 устройство",
     ],
     popular: true,
   },
   {
-    name: "Премиум лицензия",
-    price: "799 руб",
+    name: "Премиум",
+    price: "349 ₽",
+    period: "в месяц",
     icon: <Crown className="w-6 h-6" />,
     features: [
-      "Использование для записи музыки",
-      "Распространение до 20 000 копий",
-      "500 000 онлайн-прослушиваний",
-      "1 музыкальный клип",
-      "Только некоммерческие выступления",
+      "Полный каталог 1 млн+ треков",
+      "Качество Hi-Fi / Lossless",
+      "Без рекламы",
+      "Неограниченное скачивание",
+      "До 3 устройств",
+      "Эксклюзивные релизы",
     ],
-    notIncluded: ["Без прав на радиотрансляцию"],
   },
   {
-    name: "Коммерческая лицензия",
-    price: "899 руб",
+    name: "Семейный",
+    price: "499 ₽",
+    period: "в месяц",
     icon: <Globe className="w-6 h-6" />,
     features: [
-      "Использование для записи музыки",
-      "Неограниченное распространение",
-      "Неограниченные онлайн-прослушивания",
-      "Неограниченное количество клипов",
-      "Коммерческие выступления",
-      "Радиотрансляция (без ограничений)",
+      "Полный каталог 1 млн+ треков",
+      "Качество Hi-Fi / Lossless",
+      "Без рекламы",
+      "Неограниченное скачивание",
+      "До 6 аккаунтов",
+      "Детский режим",
     ],
   },
 ];
@@ -93,7 +96,7 @@ const LicenseSection = () => {
   }, []);
 
   return (
-    <section ref={ref} id="licenses" className="py-20 relative overflow-hidden">
+    <section ref={ref} id="plans" className="py-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-900/20 to-black"></div>
 
       <div className="container mx-auto px-4 relative">
@@ -102,17 +105,16 @@ const LicenseSection = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
           }`}
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">Выбери свою лицензию</h2>
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">Выбери свой тариф</h2>
           <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
-            Подбери идеальную лицензию под свои потребности и начни создавать потрясающую музыку уже
-            сегодня
+            От бесплатного доступа до премиум-качества — найди план, который подходит именно тебе
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {licenseOptions.map((option, index) => (
+          {plans.map((plan, index) => (
             <div
-              key={option.name}
+              key={plan.name}
               className={`transition-all duration-500 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
               }`}
@@ -125,13 +127,13 @@ const LicenseSection = () => {
                   hoveredCard === index ? "scale-105" : "scale-100"
                 } transition-all duration-300`}
               >
-                <div className="absolute inset-0 rounded-lg p-[1px] bg-gradient-to-br from-white/20 to-white/0">
+                <div className={`absolute inset-0 rounded-lg p-[1px] ${plan.popular ? "bg-gradient-to-br from-purple-500/60 to-purple-500/0" : "bg-gradient-to-br from-white/20 to-white/0"}`}>
                   <div className="absolute inset-0 rounded-lg bg-black"></div>
                 </div>
 
-                {option.popular && (
+                {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                    <span className="bg-white text-black px-4 py-1 rounded-full text-sm font-semibold animate-pulse">
+                    <span className="bg-purple-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
                       Популярный
                     </span>
                   </div>
@@ -139,45 +141,40 @@ const LicenseSection = () => {
 
                 <CardContent className="relative p-6 rounded-lg h-full flex flex-col">
                   <div className="text-center mb-6">
-                    <div className="inline-flex p-3 rounded-full bg-zinc-900 border border-white/10 mb-4">
-                      {option.icon}
+                    <div className={`inline-flex p-3 rounded-full mb-4 border ${plan.popular ? "bg-purple-500/20 border-purple-500/30 text-purple-400" : "bg-zinc-900 border-white/10 text-white"}`}>
+                      {plan.icon}
                     </div>
-                    <h3 className="text-xl font-bold mb-2 text-white">{option.name}</h3>
-                    <div className="text-3xl font-bold text-white">{option.price}</div>
+                    <h3 className="text-xl font-bold mb-2 text-white">{plan.name}</h3>
+                    <div className="text-3xl font-bold text-white">{plan.price}</div>
+                    <div className="text-sm text-zinc-500 mt-1">{plan.period}</div>
                   </div>
 
                   <div className="flex-grow">
+                    {plan.badge && (
+                      <div className="mb-4 text-center">
+                        <span className="text-xs text-purple-400 font-semibold bg-purple-500/10 px-3 py-1 rounded-full">
+                          {plan.badge}
+                        </span>
+                      </div>
+                    )}
                     <ul className="space-y-3 mb-6">
-                      {option.features.map((feature, i) => (
+                      {plan.features.map((feature, i) => (
                         <li key={i} className="flex items-start">
-                          <Check className="h-5 w-5 text-white mr-2 shrink-0 mt-0.5" />
+                          <Check className="h-5 w-5 text-purple-400 mr-2 shrink-0 mt-0.5" />
                           <span className="text-sm text-zinc-300">{feature}</span>
-                        </li>
-                      ))}
-                      {option.notIncluded?.map((feature, i) => (
-                        <li key={i} className="flex items-start text-zinc-500">
-                          <X className="h-5 w-5 text-zinc-500 mr-2 shrink-0 mt-0.5" />
-                          <span className="text-sm">{feature}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  {option.bulkDeal && (
-                    <div className="mb-4">
-                      <p className="text-sm font-semibold text-white bg-white/5 py-2 px-3 rounded-lg border border-white/10 animate-pulse">
-                        {option.bulkDeal}
-                      </p>
-                    </div>
-                  )}
-
                   <Button
-                    className="w-full bg-white text-black hover:bg-zinc-200 transition-colors"
-                    asChild
+                    className={`w-full rounded-full mt-auto transition-all duration-300 ${
+                      plan.popular
+                        ? "bg-purple-600 hover:bg-purple-700 text-white"
+                        : "bg-zinc-800 hover:bg-zinc-700 text-white border border-white/10"
+                    }`}
                   >
-                    <a href="#" target="_blank" rel="noopener noreferrer">
-                      Выбрать
-                    </a>
+                    {plan.price === "0 ₽" ? "Начать бесплатно" : "Подключить"}
                   </Button>
                 </CardContent>
               </Card>
