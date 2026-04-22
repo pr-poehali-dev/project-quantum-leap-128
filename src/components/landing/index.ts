@@ -7,3 +7,6 @@ export { default as ContactSection } from "./ContactSection";
 export { default as Footer } from "./Footer";
 export { default as MiniPlayer } from "./MiniPlayer";
 export { default as AuthModal } from "./AuthModal";
+export { default as FullPlayer } from "./FullPlayer";
+export { default as UploadModal } from "./UploadModal";
+export { default as TrackCatalog } from "./TrackCatalog";

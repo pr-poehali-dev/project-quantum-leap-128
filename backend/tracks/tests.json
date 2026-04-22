@@ -1,0 +1,21 @@
+{
+  "tests": [
+    {
+      "name": "Get tracks catalog",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {"tracks": []},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Upload without auth",
+      "method": "POST",
+      "path": "/",
+      "body": {"title": "Test", "artist": "K.J", "file_b64": "dGVzdA==", "file_name": "test.mp3"},
+      "expectedStatus": 401,
+      "expectedBody": {"error": "string"},
+      "bodyMatcher": "partial"
+    }
+  ]
+}

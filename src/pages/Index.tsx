@@ -6,14 +6,20 @@ import {
   Footer,
   MiniPlayer,
   AuthModal,
+  FullPlayer,
+  UploadModal,
+  TrackCatalog,
 } from "@/components/landing";
+import { PlayerProvider } from "@/context/PlayerContext";
 import type { User } from "@/components/landing/AuthModal";
 
 const AUTH_URL = "https://functions.poehali.dev/df438021-8bc0-41c0-a510-a26c103a0ad2";
 
-const Index = () => {
+const IndexInner = () => {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [isUploadOpen, setIsUploadOpen] = useState(false);
   const [user, setUser] = useState<User | null>(null);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
     const sid = localStorage.getItem("kj_session");
@@ -55,19 +61,38 @@ const Index = () => {
           user={user}
           onLogout={handleLogout}
         />
-        <main className="pb-24">
+        <main className="pb-28">
           <HeroSection />
+          <TrackCatalog
+            user={user}
+            onUploadClick={() => user ? setIsUploadOpen(true) : setIsAuthOpen(true)}
+            refreshKey={refreshKey}
+          />
         </main>
         <Footer />
       </div>
+
       <MiniPlayer />
+      <FullPlayer />
+
       <AuthModal
         isOpen={isAuthOpen}
         onClose={() => setIsAuthOpen(false)}
         onAuth={handleAuth}
       />
+      <UploadModal
+        isOpen={isUploadOpen}
+        onClose={() => setIsUploadOpen(false)}
+        onUploaded={() => setRefreshKey((k) => k + 1)}
+      />
     </div>
   );
 };
+
+const Index = () => (
+  <PlayerProvider>
+    <IndexInner />
+  </PlayerProvider>
+);
 
 export default Index;
