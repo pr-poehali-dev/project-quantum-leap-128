@@ -3,38 +3,80 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
 
+const AUTH_URL = "https://functions.poehali.dev/df438021-8bc0-41c0-a510-a26c103a0ad2";
+
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onAuth: (user: User, sessionId: string) => void;
 }
 
-const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
+const AuthModal = ({ isOpen, onClose, onAuth }: AuthModalProps) => {
   const [mode, setMode] = useState<"login" | "register">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isDone, setIsDone] = useState(false);
+  const [error, setError] = useState("");
 
   if (!isOpen) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
     setIsLoading(true);
-    await new Promise((r) => setTimeout(r, 1500));
-    setIsLoading(false);
-    setIsDone(true);
-    setTimeout(() => {
-      setIsDone(false);
-      onClose();
-    }, 2000);
+
+    try {
+      const res = await fetch(AUTH_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: mode === "login" ? "login" : "register",
+          name,
+          email,
+          password,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Произошла ошибка");
+        setIsLoading(false);
+        return;
+      }
+
+      setIsLoading(false);
+      setIsDone(true);
+
+      setTimeout(() => {
+        setIsDone(false);
+        setEmail("");
+        setPassword("");
+        setName("");
+        onAuth(data.user, data.sessionId);
+        onClose();
+      }, 1200);
+    } catch {
+      setError("Ошибка соединения. Попробуйте ещё раз.");
+      setIsLoading(false);
+    }
+  };
+
+  const switchMode = (m: "login" | "register") => {
+    setMode(m);
+    setError("");
   };
 
   return (
-    <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-      onClick={(e) => e.target === e.currentTarget && onClose()}
-    >
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
 
       <div className="relative w-full max-w-md bg-zinc-950 border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
@@ -62,7 +104,7 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
               className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
                 mode === "login" ? "bg-red-600 text-white" : "text-zinc-400 hover:text-white"
               }`}
-              onClick={() => setMode("login")}
+              onClick={() => switchMode("login")}
             >
               Войти
             </button>
@@ -70,7 +112,7 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
               className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
                 mode === "register" ? "bg-red-600 text-white" : "text-zinc-400 hover:text-white"
               }`}
-              onClick={() => setMode("register")}
+              onClick={() => switchMode("register")}
             >
               Регистрация
             </button>
@@ -85,7 +127,6 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                   placeholder="Ваше имя"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  required
                   className="bg-zinc-900 border-zinc-700 text-white placeholder-zinc-500 focus:border-red-500"
                 />
               </div>
@@ -112,6 +153,13 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                 className="bg-zinc-900 border-zinc-700 text-white placeholder-zinc-500 focus:border-red-500"
               />
             </div>
+
+            {error && (
+              <div className="flex items-center gap-2 text-red-400 text-sm bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
+                <Icon name="AlertCircle" size={14} />
+                {error}
+              </div>
+            )}
 
             {mode === "login" && (
               <div className="text-right">
@@ -141,24 +189,6 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
               )}
             </Button>
           </form>
-
-          <div className="mt-6 relative">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-zinc-800" />
-            </div>
-            <div className="relative flex justify-center text-xs text-zinc-500 bg-zinc-950 px-3">
-              или продолжить с
-            </div>
-          </div>
-
-          <Button
-            variant="outline"
-            className="w-full mt-4 border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white gap-2"
-            type="button"
-          >
-            <Icon name="Mail" size={16} />
-            Войти через Google
-          </Button>
         </div>
       </div>
     </div>
