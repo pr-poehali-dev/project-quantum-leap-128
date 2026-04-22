@@ -30,7 +30,7 @@ const Header = () => {
     >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <a href="/" className="text-3xl font-bold tracking-tighter text-white flex items-center gap-2">
-          <span className="text-purple-400">♪</span> SoundWave
+          <span className="text-red-500">♪</span> SoundWave
         </a>
         <div className="md:hidden">
           <Button
@@ -51,7 +51,7 @@ const Header = () => {
             <li>
               <button
                 onClick={() => scrollToSection("plans")}
-                className="text-white hover:text-purple-400 transition-colors"
+                className="text-white hover:text-red-500 transition-colors"
               >
                 Тарифы
               </button>
@@ -59,7 +59,7 @@ const Header = () => {
             <li>
               <button
                 onClick={() => scrollToSection("about")}
-                className="text-white hover:text-purple-400 transition-colors"
+                className="text-white hover:text-red-500 transition-colors"
               >
                 О платформе
               </button>
@@ -67,7 +67,7 @@ const Header = () => {
             <li>
               <button
                 onClick={() => scrollToSection("contact")}
-                className="text-white hover:text-purple-400 transition-colors"
+                className="text-white hover:text-red-500 transition-colors"
               >
                 Контакты
               </button>
@@ -76,7 +76,7 @@ const Header = () => {
         </nav>
         <Button
           variant="outline"
-          className="hidden md:block border-purple-400/50 text-purple-300 hover:bg-purple-400/10"
+          className="hidden md:block border-red-500/50 text-red-400 hover:bg-red-500/10"
           onClick={() => scrollToSection("plans")}
         >
           Начать слушать

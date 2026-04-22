@@ -59,22 +59,22 @@ const AboutSection = () => {
           style={{ transform: `translateY(${(1 - scrollProgress) * 50}px)` }}
         >
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/0 rounded-3xl transform -rotate-6"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 to-blue-500/0 rounded-3xl transform -rotate-6"></div>
             <div className="w-full aspect-square bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-3xl relative z-10 flex items-center justify-center overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-blue-900/20"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-red-950/30 to-blue-900/20"></div>
               <div className="relative text-center p-8">
-                <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center shadow-2xl shadow-purple-500/30">
+                <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-red-600 to-blue-600 flex items-center justify-center shadow-2xl shadow-red-600/30">
                   <Icon name="Headphones" size={64} className="text-white" />
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   {features.map((f) => (
                     <div key={f.title} className="bg-black/40 rounded-xl p-3 border border-white/10 text-left">
-                      <Icon name={f.iconName} size={18} className="text-purple-400 mb-1" />
+                      <Icon name={f.iconName} size={18} className="text-red-500 mb-1" />
                       <p className="text-white text-xs font-semibold">{f.title}</p>
                     </div>
                   ))}
-                  <div className="bg-purple-600/20 rounded-xl p-3 border border-purple-500/20 text-left">
-                    <Icon name="Star" size={18} className="text-purple-400 mb-1" />
+                  <div className="bg-red-600/20 rounded-xl p-3 border border-red-600/20 text-left">
+                    <Icon name="Star" size={18} className="text-red-500 mb-1" />
                     <p className="text-white text-xs font-semibold">Офлайн-режим</p>
                   </div>
                 </div>
@@ -95,13 +95,13 @@ const AboutSection = () => {
               {achievements.map((achievement, index) => (
                 <div
                   key={achievement.label}
-                  className={`bg-zinc-900/50 rounded-lg p-4 border border-white/10 transition-all duration-500 hover:border-purple-400/30 ${
+                  className={`bg-zinc-900/50 rounded-lg p-4 border border-white/10 transition-all duration-500 hover:border-red-500/30 ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
                   }`}
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
                   <div className="flex items-center mb-2">
-                    <div className="mr-2 text-purple-400">
+                    <div className="mr-2 text-red-500">
                       <Icon name={achievement.iconName} size={20} />
                     </div>
                     <div className="text-2xl font-bold text-white">{achievement.value}</div>

@@ -32,7 +32,7 @@ const HeroSection = () => {
     <section ref={containerRef} className="min-h-screen relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/50 to-black"></div>
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-red-600/10 rounded-full blur-[120px] pointer-events-none"></div>
       </div>
 
       <div
@@ -41,12 +41,12 @@ const HeroSection = () => {
       >
         <div className="max-w-7xl mx-auto w-full">
           <div className="text-center mb-16 animate-fade-in">
-            <div className="inline-flex items-center gap-2 bg-purple-500/10 border border-purple-500/20 rounded-full px-4 py-2 mb-6 text-purple-300 text-sm">
+            <div className="inline-flex items-center gap-2 bg-red-600/10 border border-red-600/20 rounded-full px-4 py-2 mb-6 text-red-400 text-sm">
               <Icon name="Sparkles" size={14} />
               Стриминговая платформа нового поколения
             </div>
             <h1 className="text-6xl md:text-8xl font-bold mb-6 tracking-tight">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-purple-200 to-zinc-500">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-red-200 to-zinc-500">
                 Музыка без границ
               </span>
             </h1>
@@ -57,7 +57,7 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-purple-600 hover:bg-purple-700 text-white text-lg px-8 py-6 rounded-full transition-all duration-300 hover:scale-105"
+                className="bg-red-600 hover:bg-red-700 text-white text-lg px-8 py-6 rounded-full transition-all duration-300 hover:scale-105"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 onClick={() => document.getElementById("plans")?.scrollIntoView({ behavior: "smooth" })}
@@ -90,8 +90,8 @@ const HeroSection = () => {
                 className="text-center animate-fade-in"
                 style={{ animationDelay: `${0.2 + index * 0.1}s` }}
               >
-                <div className="bg-zinc-900/50 rounded-xl p-6 backdrop-blur-lg border border-white/10 transition-all duration-300 hover:scale-105 hover:border-purple-400/30">
-                  <div className="mb-2 text-purple-400 flex justify-center">
+                <div className="bg-zinc-900/50 rounded-xl p-6 backdrop-blur-lg border border-white/10 transition-all duration-300 hover:scale-105 hover:border-red-500/30">
+                  <div className="mb-2 text-red-500 flex justify-center">
                     <Icon name={stat.iconName} size={24} />
                   </div>
                   <div className="text-3xl font-bold mb-1 text-white">{stat.value}</div>

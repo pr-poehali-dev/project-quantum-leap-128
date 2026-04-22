@@ -127,13 +127,13 @@ const LicenseSection = () => {
                   hoveredCard === index ? "scale-105" : "scale-100"
                 } transition-all duration-300`}
               >
-                <div className={`absolute inset-0 rounded-lg p-[1px] ${plan.popular ? "bg-gradient-to-br from-purple-500/60 to-purple-500/0" : "bg-gradient-to-br from-white/20 to-white/0"}`}>
+                <div className={`absolute inset-0 rounded-lg p-[1px] ${plan.popular ? "bg-gradient-to-br from-red-600/60 to-red-600/0" : "bg-gradient-to-br from-white/20 to-white/0"}`}>
                   <div className="absolute inset-0 rounded-lg bg-black"></div>
                 </div>
 
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                    <span className="bg-purple-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                    <span className="bg-red-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
                       Популярный
                     </span>
                   </div>
@@ -141,7 +141,7 @@ const LicenseSection = () => {
 
                 <CardContent className="relative p-6 rounded-lg h-full flex flex-col">
                   <div className="text-center mb-6">
-                    <div className={`inline-flex p-3 rounded-full mb-4 border ${plan.popular ? "bg-purple-500/20 border-purple-500/30 text-purple-400" : "bg-zinc-900 border-white/10 text-white"}`}>
+                    <div className={`inline-flex p-3 rounded-full mb-4 border ${plan.popular ? "bg-red-600/20 border-red-600/30 text-red-500" : "bg-zinc-900 border-white/10 text-white"}`}>
                       {plan.icon}
                     </div>
                     <h3 className="text-xl font-bold mb-2 text-white">{plan.name}</h3>
@@ -152,7 +152,7 @@ const LicenseSection = () => {
                   <div className="flex-grow">
                     {plan.badge && (
                       <div className="mb-4 text-center">
-                        <span className="text-xs text-purple-400 font-semibold bg-purple-500/10 px-3 py-1 rounded-full">
+                        <span className="text-xs text-red-500 font-semibold bg-red-600/10 px-3 py-1 rounded-full">
                           {plan.badge}
                         </span>
                       </div>
@@ -160,7 +160,7 @@ const LicenseSection = () => {
                     <ul className="space-y-3 mb-6">
                       {plan.features.map((feature, i) => (
                         <li key={i} className="flex items-start">
-                          <Check className="h-5 w-5 text-purple-400 mr-2 shrink-0 mt-0.5" />
+                          <Check className="h-5 w-5 text-red-500 mr-2 shrink-0 mt-0.5" />
                           <span className="text-sm text-zinc-300">{feature}</span>
                         </li>
                       ))}
@@ -170,7 +170,7 @@ const LicenseSection = () => {
                   <Button
                     className={`w-full rounded-full mt-auto transition-all duration-300 ${
                       plan.popular
-                        ? "bg-purple-600 hover:bg-purple-700 text-white"
+                        ? "bg-red-600 hover:bg-red-700 text-white"
                         : "bg-zinc-800 hover:bg-zinc-700 text-white border border-white/10"
                     }`}
                   >

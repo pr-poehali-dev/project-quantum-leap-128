@@ -56,7 +56,7 @@ const ContactSection = () => {
         style={{ backgroundPosition: "0 0, 0 0" }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[300px] bg-purple-600/5 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[300px] bg-red-600/5 rounded-full blur-[80px] pointer-events-none" />
       <div
         className={`container mx-auto px-4 relative z-10 transition-all duration-700 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
@@ -106,7 +106,7 @@ const ContactSection = () => {
             </div>
             <Button
               type="submit"
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white transition-colors relative overflow-hidden group"
+              className="w-full bg-red-600 hover:bg-red-700 text-white transition-colors relative overflow-hidden group"
               disabled={isSubmitting || isSubmitted}
             >
               <span className="relative z-10 flex items-center justify-center">

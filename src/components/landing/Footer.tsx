@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div>
             <a href="/" className="text-2xl font-bold text-white flex items-center gap-2 mb-2">
-              <span className="text-purple-400">♪</span> SoundWave
+              <span className="text-red-500">♪</span> SoundWave
             </a>
             <p className="text-zinc-500 text-sm">Музыка без границ</p>
           </div>
@@ -17,13 +17,13 @@ const Footer = () => {
             <a href="#" className="hover:text-white transition-colors">Для артистов</a>
           </div>
           <div className="flex space-x-4">
-            <a href="#" className="text-zinc-400 hover:text-purple-400 transition-colors" aria-label="YouTube">
+            <a href="#" className="text-zinc-400 hover:text-red-500 transition-colors" aria-label="YouTube">
               <Icon name="Youtube" size={22} />
             </a>
-            <a href="#" className="text-zinc-400 hover:text-purple-400 transition-colors" aria-label="Instagram">
+            <a href="#" className="text-zinc-400 hover:text-red-500 transition-colors" aria-label="Instagram">
               <Icon name="Instagram" size={22} />
             </a>
-            <a href="#" className="text-zinc-400 hover:text-purple-400 transition-colors" aria-label="Telegram">
+            <a href="#" className="text-zinc-400 hover:text-red-500 transition-colors" aria-label="Telegram">
               <Icon name="Send" size={22} />
             </a>
           </div>
